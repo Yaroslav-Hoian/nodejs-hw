@@ -1,36 +1,37 @@
 import { model, Schema } from 'mongoose';
 
-const notesShema = new Schema({
-  title: {
-    type: String,
-    required: true,
-    trim: true,
+const noteSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    content: {
+      type: String,
+      required: false,
+      trim: true,
+      default: '',
+    },
+    tag: {
+      type: String,
+      required: false,
+      enum: [
+        'Work',
+        'Personal',
+        'Meeting',
+        'Shopping',
+        'Ideas',
+        'Travel',
+        'Finance',
+        'Health',
+        'Important',
+        'Todo',
+      ],
+      default: 'Todo',
+    },
   },
-  content: {
-    type: String,
-    required: false,
-    trim: true,
-    default: '',
-  },
-  tag: {
-    type: String,
-    required: false,
-    enum: [
-      'Work',
-      'Personal',
-      'Meeting',
-      'Shopping',
-      'Ideas',
-      'Travel',
-      'Finance',
-      'Health',
-      'Important',
-      'Todo',
-    ],
-    default: 'Todo',
-  },
+  { timestamps: true, versionKey: false },
+);
 
-},{timestamps: true,
-  versionKey: false,});
-
-export const Notes = model('notes', notesShema);
+export const Note = model('Note', noteSchema);
