@@ -17,6 +17,10 @@ const userSchema = new Schema(
       minlength: 8,
       required: true,
     },
+    avatar: {
+      type: String,
+      default: 'https://ac.goit.global/fullstack/react/default-avatar.jpg',
+    },
   },
   { timestamps: true, versionKey: false },
 );
